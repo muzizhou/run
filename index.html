@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑酷游戏</title>
+    <style>
+        html,body{
+            padding:0;margin:0;
+            width:100%;height:100%;
+            overflow: hidden;
+            background:#000;
+        }
+        canvas{
+            /*width: 100%;height: 100%;*/
+            background: url(images/back1.jpg) repeat-x;
+        }
+
+        .start{
+            width: 400px;height: 300px;
+            position: absolute;
+            left: 0;top: 0;right: 0;bottom: 0;
+            margin: auto;
+            z-index: 10;
+        }
+        .jingqian{
+            width: 100px;height: 100px;
+            position: absolute;
+            bottom: 0px;left: 30px;
+        }
+        .jingqian img{
+            width: 100%;height: 100%;
+        }
+        .score{
+            width: 50px;height: 50px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 50px;
+            color: red;
+            font-size: 24px;
+            bottom: 25px;left: 100px;
+        }
+        .life{
+            width: 100px;height: 100px;
+            position: absolute;
+            bottom: 8px;right: 30px;
+        }
+        .life img{
+            width: 100%;height: 100%;
+        }
+        .lifes{
+            width: 50px;height: 50px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            color: red;
+            box-sizing: border-box;
+            bottom: 25px;right: 100px;
+        }
+        .over{
+            width: 400px;height: 250px;
+            position: absolute;
+            left: 0;top: 0;right: 0;bottom: 0;
+            margin: 0;display: none;
+        }
+        .over img{
+            width: 100%;height: 100%;
+        }
+    </style>
+    <script src="js/hitPix.js"></script>
+    <script src="js/run.js"></script>
+    <script src="js/jquery.js"></script>
+    <script>
+        /*
+        * 需求
+        * 逻辑  思路
+        * 布局
+        * 交互
+        *
+        * */
+        window.onload=function(){
+            var canvas=document.querySelector("canvas");
+            var cobj=canvas.getContext("2d");
+            window.onresize=function() {
+                canvas.width = document.documentElement.clientWidth;
+                canvas.height = document.documentElement.clientHeight;
+            }
+            window.onresize();
+
+
+                /*程序运行*/
+                var runImg=document.querySelectorAll(".run");
+                var jumpImg=document.querySelectorAll(".jump");
+                var hinderImg=document.querySelectorAll(".hinder");
+                var lifes=document.getElementsByClassName("lifes")[0];
+                var scores=document.getElementsByClassName("score")[0];
+                var over=document.getElementsByClassName("over")[0];
+                var audio=document.getElementsByTagName("audio")[0];
+
+            $(".start").click(function(){
+                $(".start").css("display","none")
+                audio.play();
+                var gameObj=new game(canvas,cobj,runImg,jumpImg,hinderImg,scores,lifes,over);
+                gameObj.play();
+            })
+
+
+
+//
+//
+        }
+    </script>
+</head>
+<canvas>
+    你的浏览器不支持canvas,请升级浏览器
+</canvas>
+<audio src="img/run-music.mp3"></audio>
+<div class="start"><img src="img/start.jpg" alt=""></div>
+<div class="life">
+    <img src="img/life.png" alt="">
+    <div class="lifes">3</div>
+</div>
+<div class="jingqian">
+    <img src="img/jingqian.png" alt="">
+    <div class="score">0</div>
+</div>
+<div class="over"><img src="images/over.jpg" alt=""></div>
+<!-- 人物 -->
+<img src="img/9.png" alt="" class="run" hidden>
+<img src="img/10.png" alt="" class="run" hidden>
+<img src="img/11.png" alt="" class="run" hidden>
+<img src="img/13.png" alt="" class="run" hidden>
+<img src="img/12.png" alt="" class="run" hidden>
+<img src="img/7.png" alt="" class="run" hidden>
+<img src="img/1.png" alt="" class="run" hidden>
+
+<!-- 跳跃 -->
+<img src="img/4.png" alt="" class="jump" hidden>
+
+<!-- 障碍物 -->
+<img src="img/21.png" alt="" class="hinder" hidden>
+<img src="img/22.png" alt="" class="hinder" hidden>
+<img src="img/23.png" alt="" class="hinder" hidden>
+<img src="img/24.png" alt="" class="hinder" hidden>
+<img src="img/25.png" alt="" class="hinder" hidden>
+<img src="img/26.png" alt="" class="hinder" hidden>
+<img src="img/27.png" alt="" class="hinder" hidden>
+<img src="img/28.png" alt="" class="hinder" hidden>
+<img src="img/29.png" alt="" class="hinder" hidden>
+<img src="img/30.png" alt="" class="hinder" hidden>
+</body>
+</html>
